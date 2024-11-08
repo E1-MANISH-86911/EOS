@@ -6,6 +6,7 @@
 
 int main(){
 	int ret, cnt = 0;
+	int s;
 	while(1){
 		ret = fork();
 		if(ret == -1){
@@ -21,8 +22,8 @@ int main(){
 			printf("Child count: %d\n", cnt);
 		}
 	}
-	while(wait(NULL) > 0);
-	printf("All child processes cleaned up. Total child processes created: %d\n", cnt);
+	while(waitpid(-1, &s, 0) > 0);
+	printf("All child processes cleaned up.\n Child exit status: %d.\n Total child processes created: %d.\n", WEXITSTATUS(0), cnt);
 	return 0;
 }
 
