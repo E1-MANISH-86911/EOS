@@ -32,5 +32,6 @@ int main(){
 	pthread_create(&th, NULL, sum, &in);
 	pthread_join(th, (void**)&op);
 	printf("Result=%d\n", op->out);
+	free(op);
 	return 0;
 }
